@@ -1,0 +1,23 @@
+<div class="row">
+  <label class="small-12 medium-3 large-2 white-colour" for="name"><strong>Search:</strong> </label>
+  <input id="name" class="small-12 medium-9 large-10" type="text" #term (keyup)="getMovies(term.value)">
+</div>
+
+<div class="movies">
+  <div *ngFor="let movie of movies" class="movie">
+  <div class="small-12 movie-title">
+   <a href="http://www.imdb.com/title/{{movie?.url}}" target="_blank" class="secondary-colour">
+     <h3>
+      {{movie?.name}}
+     </h3>
+   </a>
+  </div>
+   <a href="{{movie?.image}}.jpg">
+     <img *ngIf="movie.image" src="{{movie?.image}}@._V1_UX300_CR0,0,300,449_AL_.jpg" alt="{{movie?.name}}">
+     <img *ngIf="!movie.image" src="http://www.etonline.com/media/photo/movieposters/smg_poster_placeholder_300.jpg" alt="{{movie?.name}}">
+   </a>
+   <p>Staring: {{movie?.stars}}</p>
+   <p>Year: {{movie?.year}}</p>
+  </div>
+  <div *ngIf="movies?.length == 0"><p>No Movies Found</p></div>
+</div>
