@@ -255,7 +255,7 @@ gulp.task('watch', function() {
 });
 
 gulp.task('comments', function () {
-  return gulp.src('./dist/styles/*.css')
+  return gulp.src(path.dist + 'styles/*.css')
     .pipe(cssNano({
         safe: true,
         discardComments: {
