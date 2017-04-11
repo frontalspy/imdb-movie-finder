@@ -7,7 +7,7 @@ import 'rxjs/add/operator/map';
 
 @Injectable()
 export class MainService {
-  private apiURL = 'http://localhost/movie-finder/src/lib/apiconnect.php';  // URL to web API
+  private apiURL = './lib/apiconnect.php';  // URL to web API
   //private apiURL = 'http://sg.media-imdb.com/suggests/';  // URL to web API
 // + term.charAt(0) + '/' + term.replace(/ /g, '_') + '.json'
   
