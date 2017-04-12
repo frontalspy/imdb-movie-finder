@@ -1,9 +1,9 @@
-<div class="row">
+<div class="row column">
   <label class="small-12 medium-3 large-2 white-colour" for="name"><strong>Search:</strong> </label>
   <input id="name" class="small-12 medium-9 large-10" type="text" #term (keyup)="getMovies(term.value)">
 </div>
 
-<div class="movies">
+<div class="movies column">
   <div *ngFor="let movie of movies" class="movie">
   <div class="small-12 movie-title">
    <a href="http://www.imdb.com/title/{{movie?.url}}" target="_blank" class="secondary-colour">
