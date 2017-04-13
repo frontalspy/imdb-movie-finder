@@ -16,13 +16,12 @@ export class MovieComponent implements OnInit {
   ngOnInit() {}
   
   getMovies(term: string){
-    if(term)
+    if(term && term.length != 0)
       this.mainService.getMovies(term).then(
                                         movies => { this.movies = movies},
                                         error => this.errorMessage = <any>error);
     else {
-      this.movies = "";
-      console.log(this.movies.length);
+      this.movies = null;
     }
   }
 

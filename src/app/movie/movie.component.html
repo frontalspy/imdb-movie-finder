@@ -1,6 +1,6 @@
 <div class="row column">
   <label class="small-12 medium-3 large-2 white-colour" for="name"><strong>Search:</strong> </label>
-  <input id="name" class="small-12 medium-9 large-10" type="text" #term (keyup)="getMovies(term.value)">
+  <input id="name" class="small-12 medium-9 large-10" type="text" #term (keyup)="getMovies(term.value)" (keyup.enter)="getMovies(term.value)" placeholder="Type in the name of a movie or star">
 </div>
 
 <div class="movies column">
