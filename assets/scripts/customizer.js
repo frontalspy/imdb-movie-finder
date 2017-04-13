@@ -1,2 +1,8 @@
-!function(n){wp.customize("blogname",function(t){t.bind(function(t){n(".brand").text(t)})})}(jQuery);
-//# sourceMappingURL=customizer.js.map
+(function($) {
+  // Site title
+  wp.customize('blogname', function(value) {
+    value.bind(function(to) {
+      $('.brand').text(to);
+    });
+  });
+})(jQuery);

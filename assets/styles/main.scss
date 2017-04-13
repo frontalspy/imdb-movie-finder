@@ -1,0 +1,39 @@
+@import "common/_variables";
+
+// Automatically injected Bower dependencies via wiredep (never manually edit this block)
+// bower:scss
+@import "../../../bower_components/foundation-sites/scss/foundation.scss";
+// endbower
+
+// Foundation Style Starts
+@include foundation-global-styles;
+
+// Flex classes and support. Comment out if you
+// don't want to use flex
+@include foundation-flex-classes;
+@include foundation-flex-grid;
+
+// Comment the flex includes and uncomment the
+// following grid to use floats and non-flex
+// @include foundation-grid;
+// @include foundation-float-classes;
+
+// Foundation components. Comment out/remove what you don't need
+@include foundation-typography;
+@include foundation-forms;
+@include foundation-label;
+
+@import "common/global";
+@import "components/animations";
+@import "components/buttons";
+@import "components/comments";
+@import "components/forms";
+@import "components/grid";
+@import "components/wp-classes";
+@import "layouts/header";
+@import "layouts/sidebar";
+@import "layouts/footer";
+@import "layouts/pages";
+@import "layouts/posts";
+@import "layouts/tinymce";
+@import "layouts/mobile";

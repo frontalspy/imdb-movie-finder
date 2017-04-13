@@ -1,0 +1,55 @@
+body {
+  @extend .grey-colour;
+}
+
+a {
+  @extend %transition;
+  display: inline-block;
+}
+
+a:hover,
+a:focus,
+a:active {
+  color: #fafafa;
+}
+
+.primary-colour {
+  color: $primary-colour;
+}
+
+.primary-background {
+  background: $primary-colour;
+}
+
+.secondary-colour {
+  color: $secondary-colour;
+}
+
+.secondary-background {
+  background: $secondary-colour;
+}
+
+.grey-colour {
+  color: #333;
+}
+
+.grey-background {
+  background: #333;
+}
+
+.white-colour {
+  color: #FAFAFA;
+}
+
+.white-background {
+  background: #FAFAFA;
+}
+
+.transparent {
+  background: transparent;
+}
+
+.max-width {
+  max-width: 1170px;
+  margin: auto;
+}
