@@ -53,9 +53,3 @@ a:active {
   max-width: 1170px;
   margin: auto;
 }
-
-@include breakpoint(small only) {
-  input[type=text] {
-    font-size: 1.75em;
-  }
-}

@@ -8,8 +8,8 @@ label {
 }
 
 input[type="text"] {
-    font-size: 2em;
-    padding: 2rem 1rem;
+  font-size: 2em;
+  padding: 2rem 1rem;
 }
 
 .movie {
@@ -18,5 +18,12 @@ input[type="text"] {
 }
 
 .logo {
-  margin-bottom: 1.5rem;
+  margin: 1.5rem 0;
+}
+
+@include breakpoint(small only) {
+  input[type=text],
+  label {
+    font-size: 1.75em;
+  }
 }
