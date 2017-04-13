@@ -4,6 +4,8 @@ A basic search function that uses the IMDB search API to search movies using Ang
 
 More or less my first Angular site.
 
+Switch over to the `master` branch for the source code. You can access the live version of the movie finder at [https://frontalspy.github.io/imdb-movie-finder/](https://frontalspy.github.io/imdb-movie-finder/).
+
 ## Installation
 
 Run `npm install` to install the required Angular and Gulp requirements.
