@@ -7,7 +7,9 @@ a {
   display: inline-block;
 }
 
-a:hover, a:focus, a:active {
+a:hover,
+a:focus,
+a:active {
   color: #fafafa;
 }
 
@@ -52,6 +54,8 @@ a:hover, a:focus, a:active {
   margin: auto;
 }
 
-input {
-  font-size: 1.75em;
+@include breakpoint(small only) {
+  input[type=text] {
+    font-size: 1.75em;
+  }
 }
