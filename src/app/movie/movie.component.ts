@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable }       from 'rxjs/Observable';
 import {Movie} from '../movie';
 import {MainService} from '../main-service.service';
 
@@ -18,9 +17,13 @@ export class MovieComponent implements OnInit {
   
   getMovies(term: string){
     if(term)
-      this.mainService.getMovies(term).subscribe(
-                                        movies => { this.movies = movies },
+      this.mainService.getMovies(term).then(
+                                        movies => { this.movies = movies},
                                         error => this.errorMessage = <any>error);
+    else {
+      this.movies = null;
+      console.log(this.movies);
+    }
   }
 
 }

@@ -3,64 +3,60 @@ import { Response, Headers, RequestOptions, Jsonp, URLSearchParams } from '@angu
 
 import * as fetchJsonp from "fetch-jsonp";
 
-import 'rxjs/add/operator/catch';
-import 'rxjs/add/operator/map';
-
-
 @Injectable()
 export class MainService {
-  private apiURL = './lib/apiconnect.php';  // if PHP support, use this file to handle
-  //private apiURL = 'http://sg.media-imdb.com/suggests/';  // URL to web API
-  private searchTerm = "";
+  //private apiURL = './lib/apiconnect.php';  // if PHP support, use this file to handle
+  private apiURL = 'http://sg.media-imdb.com/suggests/';  // URL to web API
   
   constructor(private jsonp: Jsonp) { }
 
   getMovies (term: string){
-    // Use this for direct connection to imdb. Comment out if using php
-    //var url = this.remoteURL(this.apiURL, term);
     
-    let params = new URLSearchParams();
-    params.set('search', term); // the user's search value
-    params.set('format', 'json');
-    params.set('callback', 'JSONP_CALLBACK');
-    return this.jsonp.get(this.apiURL, { search: params })
-                    .map(this.extractData)
-                    .catch(this.handleError);
-  }
-
-  private remoteURL(url: string, term: string) {
+    // set up an instance of this class since inside a promise it cannot acces it via this
+    let instance : MainService = this;
+    
     // reshape the api url to imdb can accept it. Depends on search term and first char
-    url += term.charAt(0) + '/' + term.replace(/ /g, '_') + '.json';
+    var url =  this.apiURL + term.charAt(0) + '/' + term.replace(/ /g, '_') + '.json';
     
     // call fetch-jsonp since imdb uses a custom callback function
     var jsonresp = fetchJsonp(url, {
-      jsonpCallbackFunction: 'imdb$' + term,
+      jsonpCallbackFunction: 'imdb$' + term.replace(/ /g, '_'),
       timeout: 1000
-    })
-    jsonresp.then(function(response) {
-      return response.json()
-    }).then(function(json) {
-      // transform the json data from imdb into something usable
-      var jsonData = "";
-      jsonData = JSON.stringify(json);
-      jsonData = 'imdb$' + term + '('+ jsonData.slice(jsonData.indexOf('"d":'), -1) + '})';
-      var replace = {
-        '"l"':'"name"',
-        '"i"': '"image"',
-        '"id"': '"url"',
-        '"s"': '"stars"',
-        '"y"': '"year"',
-        ".jpg": ''
-      };
-      // replace the default names with names of movie values
-      jsonData = jsonData.replace(/"l"|"i"|"id"|"s"|"y"|.jpg/gi, function(matched){
-        return replace[matched];
-      });
-    }).catch(function(ex) {
-        console.log('Oops', ex)
     });
-    // Need to find a way to return the transformed JSON. 
-    return jsonresp;
+    return jsonresp.then(function(response) {
+      return response.json();
+    }).then(function(json) {
+      
+      // transform the json data from imdb into something usable
+      return instance.cleanUp(json);
+    }).catch(function(ex) {
+        instance.handleError(ex);
+        return null;
+    });
+  }
+  private cleanUp(json: string) {
+    var jsonData = "";
+    jsonData = JSON.stringify(json);
+    
+    // transform the jsonp data into a json object. Might be able to make it work with jsonp
+    jsonData = jsonData.slice(jsonData.indexOf('['), -1);
+    
+    var replace = {
+      '"l"':'"name"',
+      '"i"': '"image"',
+      '"id"': '"url"',
+      '"s"': '"stars"',
+      '"y"': '"year"',
+      ".jpg": ''
+    };
+    
+    // replace the default names with names of movie values
+    jsonData = jsonData.replace(/"l"|"i"|"id"|"s"|"y"|.jpg/gi, function(matched){
+      return replace[matched];
+    });
+    
+    // parse the string into a json object
+    return JSON.parse(jsonData);
   }
 
   private extractData(res: Response) {
