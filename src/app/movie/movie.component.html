@@ -19,5 +19,5 @@
    <p>Staring: {{movie?.stars}}</p>
    <p>Year: {{movie?.year}}</p>
   </div>
-  <div *ngIf="movies?.length == 0"><p>No Movies Found</p></div>
+  <div *ngIf="movies?.length === 0 || movies === null"><p>No Movies Found</p></div>
 </div>

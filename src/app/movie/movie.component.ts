@@ -21,8 +21,8 @@ export class MovieComponent implements OnInit {
                                         movies => { this.movies = movies},
                                         error => this.errorMessage = <any>error);
     else {
-      this.movies = null;
-      console.log(this.movies);
+      this.movies = "";
+      console.log(this.movies.length);
     }
   }
 
