@@ -26,5 +26,4 @@ function cleanUp($result) {
   $result = str_replace($toReplace, $replaceBy, $result);
   return $result;
 }
-
 ?>
