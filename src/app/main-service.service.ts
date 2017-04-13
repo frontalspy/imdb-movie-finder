@@ -21,7 +21,7 @@ export class MainService {
     // call fetch-jsonp since imdb uses a custom callback function
     var jsonresp = fetchJsonp(url, {
       jsonpCallbackFunction: 'imdb$' + term.replace(/ /g, '_'),
-      timeout: 1000
+      timeout: 4000
     });
     return jsonresp.then(function(response) {
       return response.json();
