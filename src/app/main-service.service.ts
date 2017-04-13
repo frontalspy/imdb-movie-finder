@@ -6,7 +6,7 @@ import * as fetchJsonp from "fetch-jsonp";
 @Injectable()
 export class MainService {
   //private apiURL = './lib/apiconnect.php';  // if PHP support, use this file to handle
-  private apiURL = 'http://sg.media-imdb.com/suggests/';  // URL to web API
+  private apiURL = 'https://sg.media-imdb.com/suggests/';  // URL to web API
   
   constructor(private jsonp: Jsonp) { }
 
