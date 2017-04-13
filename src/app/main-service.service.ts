@@ -44,6 +44,7 @@ export class MainService {
     var replace = {
       '"l"':'"name"',
       '"i"': '"image"',
+      'http:': 'https:',
       '"id"': '"url"',
       '"s"': '"stars"',
       '"y"': '"year"',
@@ -51,7 +52,7 @@ export class MainService {
     };
     
     // replace the default names with names of movie values
-    jsonData = jsonData.replace(/"l"|"i"|"id"|"s"|"y"|.jpg/gi, function(matched){
+    jsonData = jsonData.replace(/"l"|"i"|http:|"id"|"s"|"y"|.jpg/gi, function(matched){
       return replace[matched];
     });
     

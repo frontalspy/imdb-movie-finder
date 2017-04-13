@@ -2,10 +2,10 @@
 
 
 # compiled
-/dist
+dist/
 
 # bower components
-/bower_components
+bower_components/
 
 # dependencies
 /node_modules
