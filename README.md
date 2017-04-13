@@ -1,6 +1,6 @@
 # MovieFinder
 
-A basic search function that uses the IMDB search API to search movies using Angular 2.0.
+A basic search function that uses the IMDB suggest search API to search movies using Angular 2.0.
 
 More or less my first Angular site.
 
@@ -10,7 +10,9 @@ Switch over to the `master` branch for the source code. You can access the live 
 
 Run `npm install` to install the required Angular and Gulp requirements.
 
-Run `bower install` to install Foundation and 
+Run `bower install` to install Foundation and other bower dependencies.
+
+Run `npm start` to start the local server. Run `gulp` for styling and scripts in the /assets folder otherwise you can use your own in the component css files.
 
 
 This project was generated with [angular-cli](https://github.com/angular/angular-cli) version 1.0.0-beta.26.
