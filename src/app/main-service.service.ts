@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Response, Headers, RequestOptions, Jsonp, URLSearchParams } from '@angular/http';
+import { Response } from '@angular/http';
 
 import * as fetchJsonp from "fetch-jsonp";
 
@@ -8,7 +8,7 @@ export class MainService {
   //private apiURL = './lib/apiconnect.php';  // if PHP support, use this file to handle
   private apiURL = 'https://sg.media-imdb.com/suggests/';  // URL to web API
   
-  constructor(private jsonp: Jsonp) { }
+  constructor() { }
 
   getMovies (term: string){
     
@@ -19,9 +19,10 @@ export class MainService {
     var url =  this.apiURL + term.charAt(0) + '/' + term.replace(/ /g, '_') + '.json';
     
     // call fetch-jsonp since imdb uses a custom callback function
+    // The resource will timeout after duration of the timeout regardless. Need a fix
     var jsonresp = fetchJsonp(url, {
       jsonpCallbackFunction: 'imdb$' + term.replace(/ /g, '_'),
-      timeout: 3000
+      timeout: 10000
     });
     return jsonresp.then(function(response) {
       return response.json();
@@ -30,13 +31,11 @@ export class MainService {
       // transform the json data from imdb into something usable
       return instance.cleanUp(json);
     }).catch(function(ex) {
-        instance.handleError(ex);
-        return null;
+      instance.handleError(ex);
     });
   }
   private cleanUp(json: string) {
-    var jsonData = "";
-    jsonData = JSON.stringify(json);
+    var jsonData = JSON.stringify(json);
     
     // transform the jsonp data into a json object. Might be able to make it work with jsonp
     jsonData = jsonData.slice(jsonData.indexOf('['), -1);
@@ -58,11 +57,6 @@ export class MainService {
     
     // parse the string into a json object
     return JSON.parse(jsonData);
-  }
-
-  private extractData(res: Response) {
-    let body = res.json();
-    return body.d || { };
   }
 
   private handleError (error: Response | any) {
