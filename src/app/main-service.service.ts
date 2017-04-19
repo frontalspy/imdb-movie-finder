@@ -31,7 +31,7 @@ export class MainService {
       // transform the json data from imdb into something usable
       return instance.cleanUp(json);
     }).catch(function(ex) {
-      instance.handleError(ex);
+      //instance.handleError(ex);
     });
   }
   private cleanUp(json: string) {
